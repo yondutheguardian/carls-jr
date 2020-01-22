@@ -1,0 +1,141 @@
+*,html{
+	margin: 0;
+	padding: 0;
+}
+.mycube {
+	width: 970px;
+	position: relative;
+	height: 250px;
+	-webkit-perspective: 1000px;
+	perspective: 1000px; /* The lower the value, the more pronounced the 3d effect is */
+}
+
+.mycube, .mycube *{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.mycube ul {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d; /* IE 11 or below doesn't support this, so in IE, we need to add another "perspective" property here via IE specific media queries (see below) */
+	-webkit-transform: translate3D(0,0,-120px);
+	transform: translate3D(0,0,-120px); /* move cube back by 1/2 cube height (translateZ) to undo each cube's side being moved forward by 1/2 cube height */
+	list-style: none;
+	/* margin: 0;
+	padding: 0; */
+	width: 970px;
+	height: 250px;
+}
+
+.mycube ul li{ /* cube sides */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	display: block;
+	height: 100%;
+	-webkit-transition: 1s all;
+	transition: 1s all; /* transition duration */
+}
+
+/* By default, all cubes show side 1 */
+
+#t1{
+	display: block;
+    background-image: url("images/img1.jpg");
+	-webkit-transform: rotateX(0deg) translate3D(0,0,120px);
+	transform: rotateX(0deg) translate3D(0,0,120px); /* set tranlateZ value to 1/2 cube height to bring it closer to screen, creating 3D effect */
+}
+
+#t2{
+	display: block;
+    background-image: url("images/img2.jpg");
+	-webkit-transform: rotateX(-90deg) translate3D(0,0,120px);
+	transform: rotateX(-90deg) translate3D(0,0,120px);
+	/* position: absolute;
+    top: 25px; */
+}
+
+#t3{
+	display: block;
+    background-image: url("images/img3.jpg");
+	-webkit-transform: rotateX(-180deg) translate3D(0,0,120px);
+	transform: rotateX(-180deg) translate3D(0,0,120px);
+}
+
+#t4{
+	display: block;
+    background-image: url("images/img4.jpg");
+	-webkit-transform: rotateX(-270deg) translate3D(0,0,120px);
+	transform: rotateX(-270deg) translate3D(0,0,120px);
+	/* position: absolute;
+    top: -25px; */
+}
+
+/* Cube #1: Show side 2 on hover */
+
+
+.step1{
+	display: block;
+	-webkit-transform: rotateX(-90deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-90deg) translate3D(0,0,120px)!important;
+}
+.step2{
+	display: block;
+	-webkit-transform: rotateX(-180deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-180deg) translate3D(0,0,120px)!important;
+}
+.step3{
+	display: block;
+	-webkit-transform: rotateX(-270deg) translate3D(0,0,120px) !important;
+	transform: rotateX(-270deg) translate3D(0,0,120px) !important;
+
+}
+.step4{
+	display: block;
+	-webkit-transform: rotateX(0deg) translate3D(0,0,120px)!important;
+	transform: rotateX(0deg) translate3D(0,0,120px)!important;
+}
+.step5{
+	display: block;
+	-webkit-transform: rotateX(-360deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-360deg) translate3D(0,0,120px)!important;
+}
+.step6{
+	display: block;
+	-webkit-transform: rotateX(-450deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-450deg) translate3D(0,0,120px)!important;
+}
+.step7{
+	display: block;
+	-webkit-transform: rotateX(-540deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-540deg) translate3D(0,0,120px)!important;
+}
+.step8{
+	display: block;
+	-webkit-transform: rotateX(-630deg) translate3D(0,0,120px)!important;
+	transform: rotateX(-630deg) translate3D(0,0,120px)!important;
+}
+
+.image0{
+	display: none;
+}
+#bg-exit{
+    position: absolute;
+    width: 100%;
+	height: 100%;
+	cursor: pointer;
+    z-index: 2;
+}
+
+
+/* IE specific media query to target IE10 and IE11, since it doesn't support preserve-3d */
+/* See: https://philipnewcomer.net/2014/04/target-internet-explorer-10-11-css/ */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { 
+	.mycube ul{
+		perspective: 1000px;
+	}
+}
